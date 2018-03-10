@@ -1,0 +1,11 @@
+# .htaccess for Apache 2.4
+# host based, as IPv6 prefixes are changing...
+
+AuthType Digest
+AuthName "This is a non-public area!"
+AuthUserFile /volume1/web/private/.htpasswd
+
+Require all denied
+Require ip 192.168.1.0/24
+Require ip fe80::/10
+Require ip fc00::/7

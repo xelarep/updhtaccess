@@ -19,7 +19,7 @@ else
 fi
 
 # DSM implementation
-hta_ipv6=$(ifconfig eth0 | grep Scope:Global | awk '/inet6/{print $3}')
+hta_ipv6=$(ifconfig eth0 | grep 2a02 | awk '/inet6/{print $3}' | sed 's/\/64/\/56/g')
 # macOS for testing
 #hta_ipv6=$(ifconfig en0 | grep 'autoconf secured' | awk '/inet6/{print $2}')
 

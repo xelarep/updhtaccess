@@ -12,3 +12,6 @@ Put this script in your admin home of your DSM and add a task with the rights of
 In my case I update once a day as my ISP prefix changes once a day.
 
 grep search pattern: change 2a02 to the first part of the address of your provider.
+
+October 2018: I had some runs of the script where grep found more than one valid IP? For the moment I'm testing
+with the first shown IP from ifconfig...

@@ -19,7 +19,8 @@ else
 fi
 
 # DSM implementation
-hta_ipv6=$(ifconfig eth0 | grep 2a02 | awk '/inet6/{print $3}' | sed 's/\/64/\/56/g')
+# grep 2a02 -m 1: supress other IPs found
+hta_ipv6=$(ifconfig eth0 | grep 2a02 -m 1 | awk '/inet6/{print $3}' | sed 's/\/64/\/56/g')
 # macOS for testing
 #hta_ipv6=$(ifconfig en0 | grep 'autoconf secured' | awk '/inet6/{print $2}')
 

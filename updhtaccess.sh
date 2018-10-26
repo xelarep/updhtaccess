@@ -21,7 +21,10 @@ fi
 
 # DSM implementation
 # grep 2a02 -m 1: supress other IPs found
-hta_ipv6=$(ifconfig eth0 | grep 2a02 -m 1 | awk '/inet6/{print $3}' | sed 's/\/64/\/56/g')
+#hta_ipv6=$(ifconfig eth0 | grep 2a02 -m 1 | awk '/inet6/{print $3}' | sed 's/\/64/\/56/g')
+# filter out deprecated address
+hta_ipv6=$(ip -6 addr show dev eth0 | grep -v 'deprecated' | grep 2a02 -m 1 | awk '/inet6/{print $2}' | sed 's/\/64/\/56/g')
+
 # macOS for testing
 #hta_ipv6=$(ifconfig en0 | grep 'autoconf secured' | awk '/inet6/{print $2}')
 
@@ -38,3 +41,4 @@ echo "$hta_file written."
 #debug
 date >> $hta_log 2>&1
 ifconfig eth0 >> /$hta_log 2>&1
+ip -6 addr show dev eth0 >> /$hta_log 2>&1
